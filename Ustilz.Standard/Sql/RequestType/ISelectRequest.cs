@@ -26,7 +26,7 @@
 
         /// <summary>The add first where clause.</summary>
         /// <param name="condition">The condition.</param>
-        void AddFirstWhereClause(ICondition condition);
+        void AddWhereClause(ICondition condition);
 
         /// <summary>The add join.</summary>
         /// <param name="typeJoin">The type join.</param>

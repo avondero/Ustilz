@@ -2,6 +2,8 @@
 {
     #region Usings
 
+    using System.Collections.Generic;
+
     using JetBrains.Annotations;
 
     #endregion
@@ -15,7 +17,7 @@
         /// <summary>Gets the first condition.</summary>
         /// <value>The first condition.</value>
         [NotNull]
-        IWhereCondition FirstCondition { get; }
+        List<IWhereCondition> Conditions { get; }
 
         #endregion
     }

@@ -87,13 +87,6 @@
 
         #region Méthodes publiques
 
-        /// <summary>The add first where clause.</summary>
-        /// <param name="condition">The condition.</param>
-        public void AddFirstWhereClause(ICondition condition)
-        {
-            this.whereClause = new WhereClause(condition);
-        }
-
         /// <summary>The add join.</summary>
         /// <param name="typeJoin">The type join.</param>
         /// <param name="otherColumn">The other column.</param>
@@ -107,17 +100,23 @@
 
         /// <summary>The add columns.</summary>
         /// <param name="col">The col.</param>
-        public void AddSelectColumn(string col)
-        {
-            this.selectColumns.Add(col);
-        }
+        public void AddSelectColumn(string col) => this.selectColumns.Add(col);
 
         /// <summary>The add select column.</summary>
         /// <param name="col">The col.</param>
         /// <param name="alias">The alias.</param>
-        public void AddSelectColumn(string col, string alias)
+        public void AddSelectColumn(string col, string alias) => this.selectColumns.Add(col, alias);
+
+        /// <summary>The add first where clause.</summary>
+        /// <param name="condition">The condition.</param>
+        public void AddWhereClause(ICondition condition)
         {
-            this.selectColumns.Add(col, alias);
+            if (this.whereClause == null)
+            {
+                this.whereClause = new WhereClause();
+            }
+
+            this.whereClause.AddCondition(condition);
         }
 
         /// <summary>The to sql. </summary>

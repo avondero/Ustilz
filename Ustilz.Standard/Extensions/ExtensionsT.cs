@@ -1,5 +1,4 @@
-﻿#pragma warning disable 1570
-namespace Ustilz.Extensions
+﻿namespace Ustilz.Extensions
 {
     #region Usings
 
@@ -45,18 +44,27 @@ namespace Ustilz.Extensions
 
                     return s != string.Empty;
                 }
+
                 case object o when o is string s:
                 {
                     return s.AsBool();
                 }
+
                 case object o when o is int i:
                 {
                     return i.AsBool();
                 }
-                case object _:
+
+                case IConvertible c:
                 {
-                    return false;
+                    return c.ToBoolean(null);
                 }
+
+                case object o:
+                {
+                    return Convert.ToBoolean(o);
+                }
+
                 default:
                     return false;
             }
@@ -105,7 +113,6 @@ namespace Ustilz.Extensions
             Console.WriteLine(o);
             return o;
         }
-
 
         /// <summary>The if null.</summary>
         /// <param name="source">The source.</param>
@@ -292,4 +299,3 @@ namespace Ustilz.Extensions
         #endregion
     }
 }
-#pragma warning restore 1570
